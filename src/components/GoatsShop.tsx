@@ -1,16 +1,19 @@
 import { IonButton } from "@ionic/react";
-import React from "react";
+import React, { useContext } from "react";
+import { useSelector } from "react-redux";
+import { GoatsContext } from "../contexts/GoatsContext";
 
-export default function GoatsShop({ addGoatsPS, goatsNumber }: any) {
-  const buy = (gps: number, price: number) => {
-    addGoatsPS(gps);
-  };
+const GoatsShop: React.FC = () => {
+  const { goatsNumber } = useSelector((state: any) => state);
+
+  const { buy }: any = useContext(GoatsContext);
 
   return (
     <div>
-      <IonButton disabled={goatsNumber < 100} onClick={() => buy(1, 10)}>
+      <IonButton disabled={goatsNumber - 10 < 0} onClick={() => buy(10, 1)}>
         Click me
       </IonButton>
     </div>
   );
-}
+};
+export default GoatsShop;

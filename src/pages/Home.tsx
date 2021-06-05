@@ -1,33 +1,17 @@
-import { IonContent, IonImg, IonPage } from "@ionic/react";
+import { IonButton, IonContent, IonImg, IonPage } from "@ionic/react";
 import React, { useContext, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import GoatsShop from "../components/GoatsShop";
 import { GoatsContext } from "../contexts/GoatsContext";
+import { incrementGoats } from "../redux/actions";
 import "./Home.css";
 
 const Home: React.FC = () => {
-  const [tick, setTick] = useState(0);
+  const dispatch = useDispatch();
+  const { goatsNumber, goatsPerSeconds } = useSelector((state: any) => state);
 
-  const { goatsNumber, setGoatNumber, goatPerSec, setGoatPerSec }: any =
-    useContext(GoatsContext);
-
-  useEffect(() => {
-    let nbr = 0;
-    setInterval(() => {
-      nbr++;
-      setTick(tick + nbr);
-    }, 1000);
-  }, []);
-
-  const onTick = () => {
-    setGoatNumber(goatsNumber + goatPerSec);
-  };
-
-  useEffect(() => {
-    onTick();
-  }, [tick]);
-
-  const addGoatsPS = (nbr: number) => {
-    setGoatPerSec(goatPerSec + nbr);
+  const goatClick = () => {
+    dispatch(incrementGoats(1));
   };
 
   return (
@@ -35,16 +19,16 @@ const Home: React.FC = () => {
       <IonContent fullscreen>
         <div className="main-goat-container">
           <IonImg
-            onClick={() => setGoatNumber(goatsNumber + 1)}
+            onClick={() => goatClick()}
             className="main-goat"
             src="assets/goat.png"
           />
         </div>
         <div className="scores">
           <p>{goatsNumber} goats</p>
-          <p>{goatPerSec} goats per seconds</p>
+          <p>{goatsPerSeconds} goats per seconds</p>
         </div>
-        <GoatsShop goatsNumber={goatsNumber} addGoatsPS={addGoatsPS} />
+        <GoatsShop />
       </IonContent>
     </IonPage>
   );
