@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "clicker",
+	"webDir": "build",
+	"bundledWebRuntime": false
+}
