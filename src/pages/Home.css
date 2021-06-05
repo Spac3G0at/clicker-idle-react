@@ -1,0 +1,10 @@
+.main-goat {
+  width: 50vw;
+}
+
+.main-goat-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
