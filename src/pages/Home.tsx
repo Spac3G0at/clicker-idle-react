@@ -1,12 +1,14 @@
 import { IonContent, IonImg, IonPage } from "@ionic/react";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import GoatsShop from "../components/GoatsShop";
+import { GoatsContext } from "../contexts/GoatsContext";
 import "./Home.css";
 
 const Home: React.FC = () => {
-  const [goatsNumber, setGoatNumber] = useState(0);
-  const [goatPerSec, setGoatPerSec] = useState(0);
   const [tick, setTick] = useState(0);
+
+  const { goatsNumber, setGoatNumber, goatPerSec, setGoatPerSec }: any =
+    useContext(GoatsContext);
 
   useEffect(() => {
     let nbr = 0;
