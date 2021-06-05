@@ -16,6 +16,10 @@ const Context = ({ children }: any) => {
   const dispatch = useDispatch();
   const { goatsNumber } = useSelector((state: any) => state);
 
+  useEffect(() => {
+    document.title = `${goatsNumber} goats`;
+  }, [goatsNumber]);
+
   const buy = (price: number, gps: number) => {
     if (goatsNumber - price < 0) return;
     dispatch(decrementGoats(price));

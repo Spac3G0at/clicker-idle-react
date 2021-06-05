@@ -1,6 +1,7 @@
 import { IonButton, IonContent, IonImg, IonPage } from "@ionic/react";
 import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import GoatContainer from "../components/GoatContainer";
 import GoatsShop from "../components/GoatsShop";
 import { GoatsContext } from "../contexts/GoatsContext";
 import { incrementGoats } from "../redux/actions";
@@ -17,15 +18,11 @@ const Home: React.FC = () => {
   return (
     <IonPage>
       <IonContent fullscreen>
-        <div className="main-goat-container">
-          <IonImg
-            onClick={() => goatClick()}
-            className="main-goat"
-            src="assets/goat.png"
-          />
-        </div>
+        <GoatContainer />
         <div className="scores">
-          <p>{goatsNumber} goats</p>
+          <p>
+            {goatsNumber % 1 !== 0 ? goatsNumber.toFixed(1) : goatsNumber} goats
+          </p>
           <p>{goatsPerSeconds} goats per seconds</p>
         </div>
         <GoatsShop />

@@ -1,18 +1,24 @@
-import { IonButton } from "@ionic/react";
-import React, { useContext } from "react";
-import { useSelector } from "react-redux";
-import { GoatsContext } from "../contexts/GoatsContext";
+import React from "react";
+import Product from "./Product";
 
 const GoatsShop: React.FC = () => {
-  const { goatsNumber } = useSelector((state: any) => state);
-
-  const { buy }: any = useContext(GoatsContext);
-
   return (
     <div>
-      <IonButton disabled={goatsNumber - 10 < 0} onClick={() => buy(10, 1)}>
-        Click me
-      </IonButton>
+      <Product
+        name="Small farm"
+        basePrice={10}
+        productionRate={1}
+        appearAt={0}
+        revealAt={8}
+      />
+
+      <Product
+        name="Medium farm"
+        basePrice={100}
+        productionRate={8}
+        appearAt={90}
+        revealAt={100}
+      />
     </div>
   );
 };
